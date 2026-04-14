@@ -12,7 +12,9 @@ import {
   Languages, 
   Sparkles, 
   ArrowRight,
-  ChevronDown
+  ChevronDown,
+  Menu,
+  X
 } from 'lucide-react';
 import NeuronOrb from '@/components/NeuronOrb';
 import NeuralChatUI from '@/components/NeuralChatUI';
@@ -79,6 +81,7 @@ const TRANSLATIONS = {
 export default function PortfolioPage() {
   const [lang, setLang] = useState<'en' | 'ru'>('ru');
   const [mounted, setMounted] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = TRANSLATIONS[lang];
 
   useEffect(() => {
@@ -93,7 +96,10 @@ export default function PortfolioPage() {
     <main className="min-h-screen bg-[#08080a] text-white selection:bg-cyan-500/30 overflow-x-hidden">
       
       {/* 1. STICKY HEADER */}
-      <nav className="fixed top-0 w-full z-[100] border-b border-white/[0.03] bg-black/40 backdrop-blur-xl">
+      <nav className="fixed top-0 w-full z-[100] bg-black/40 backdrop-blur-xl">
+        {/* Neon Top Line */}
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent shadow-[0_1px_10px_rgba(34,211,238,0.5)]" />
+        
         <div className="container mx-auto px-6 h-24 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-3 h-3 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_15px_rgba(34,211,238,0.6)]" />
@@ -103,6 +109,7 @@ export default function PortfolioPage() {
             </div>
           </div>
 
+          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-10">
             {t.nav.map((item) => (
               <button key={item} className="text-[11px] font-bold uppercase tracking-widest text-white/40 hover:text-white transition-colors cursor-pointer">
@@ -117,8 +124,55 @@ export default function PortfolioPage() {
               {lang.toUpperCase()}
             </button>
           </div>
+
+          {/* Mobile Hamburger Button */}
+          <button 
+            className="md:hidden text-white/80 hover:text-cyan-400 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
       </nav>
+
+      {/* MOBILE MENU OVERLAY */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[90] bg-[#020203]/95 backdrop-blur-3xl flex flex-col items-center justify-center gap-12"
+          >
+             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.05)_0%,transparent_70%)] pointer-events-none" />
+             <div className="flex flex-col items-center gap-8">
+                {t.nav.map((item) => (
+                  <button 
+                    key={item} 
+                    onClick={() => {
+                        setIsMenuOpen(false);
+                        // Trigger scroll to specific section if connected
+                    }}
+                    className="text-2xl font-black uppercase tracking-[0.3em] text-white/40 hover:text-cyan-400 transition-all hover:scale-110"
+                  >
+                    {item}
+                  </button>
+                ))}
+             </div>
+             <div className="h-[1px] w-24 bg-white/10" />
+             <button 
+                onClick={() => {
+                   toggleLang();
+                   setIsMenuOpen(false);
+                }}
+                className="px-8 py-3 rounded-full border border-cyan-500/30 text-cyan-400 text-sm font-black uppercase tracking-widest bg-cyan-500/5 shadow-[0_0_20px_rgba(34,211,238,0.2)]"
+              >
+                {lang.toUpperCase()}
+              </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 2. HERO AREA (The 2-Line Layout - Reorganized) */}
       <section className="relative pt-40 pb-20 px-6 min-h-[95vh] flex flex-col justify-center overflow-hidden">
@@ -170,6 +224,9 @@ export default function PortfolioPage() {
               <h1 className="text-3xl md:text-4xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.85] mb-6 text-glow-white">
                 {t.heroTitle}
               </h1>
+              <h1 className="text-3xl md:text-4xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.85] mb-6 text-glow-white">
+                {t.heroTitle}
+              </h1>
               <p className="text-sm md:text-lg text-white/60 leading-relaxed font-medium mb-10 max-w-3xl">
                 {t.heroDesc}
               </p>
@@ -210,7 +267,10 @@ export default function PortfolioPage() {
       </section>
 
       {/* 5. FOOTER */}
-      <footer className="py-20 border-t border-white/[0.03] bg-black">
+      <footer className="py-20 bg-black relative">
+        {/* Neon Bottom Line */}
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent shadow-[0_-1px_10px_rgba(34,211,238,0.5)]" />
+        
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/90 uppercase">

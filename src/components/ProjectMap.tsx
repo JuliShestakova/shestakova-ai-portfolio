@@ -121,16 +121,16 @@ export default function ProjectMap({ lang }: ProjectMapProps) {
                             className="relative w-full max-w-6xl max-h-full bg-[#0a0a0c] border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col"
                         >
                             {/* Modal Header */}
-                            <div className="p-6 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
-                                <div className="flex flex-col">
-                                    <h2 className="text-xl font-black uppercase tracking-tighter text-white">{selectedProject.title}</h2>
-                                    <span className="text-[9px] font-mono text-cyan-400 uppercase tracking-widest">Technical Blueprint // Rev 1.0</span>
+                            <div className="p-4 md:p-6 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
+                                <div className="flex flex-col pr-4">
+                                    <h2 className="text-lg md:text-xl font-black uppercase tracking-tighter text-white truncate max-w-[200px] md:max-w-none">{selectedProject.title}</h2>
+                                    <span className="text-[8px] md:text-[9px] font-mono text-cyan-400 uppercase tracking-widest">Technical Blueprint // Rev 1.0</span>
                                 </div>
                                 <button 
                                     onClick={() => setSelectedProject(null)}
-                                    className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors"
+                                    className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors flex-shrink-0"
                                 >
-                                    <X size={20} />
+                                    <X size={18} />
                                 </button>
                             </div>
 
