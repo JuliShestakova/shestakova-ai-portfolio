@@ -124,9 +124,19 @@ export default function PortfolioPage() {
             <span className="text-[9px] text-white/20 uppercase tracking-widest">© 2026 AI ARCHITECT // SYSTEM_STABLE</span>
           </div>
           <div className="flex gap-12 items-center">
-            {link === 'GitHub' && <a href="https://github.com/JuliShestakova" className="text-[9px] font-black uppercase tracking-widest text-white/40 hover:text-cyan-400">GitHub</a>}
-            {link === 'LinkedIn' && <span className="text-[9px] font-black uppercase tracking-widest text-white/40 hover:text-cyan-400 cursor-pointer transition-all">LinkedIn</span>}
-            {link === 'Terminal' && <span className="text-[9px] font-black uppercase tracking-widest text-white/40 hover:text-cyan-400 cursor-pointer transition-all">Terminal</span>}
+            {['GitHub', 'LinkedIn', 'Terminal'].map((link) => (
+              <React.Fragment key={link}>
+                {link === 'GitHub' ? (
+                  <a href="https://github.com/JuliShestakova" target="_blank" rel="noreferrer" className="text-[9px] font-black uppercase tracking-widest text-white/40 hover:text-cyan-400 transition-all">
+                    {link}
+                  </a>
+                ) : (
+                  <span className="text-[9px] font-black uppercase tracking-widest text-white/40 hover:text-cyan-400 cursor-pointer transition-all">
+                    {link}
+                  </span>
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </footer>
