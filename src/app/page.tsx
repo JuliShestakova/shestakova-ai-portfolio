@@ -94,25 +94,25 @@ export default function PortfolioPage() {
       
       {/* 1. STICKY HEADER */}
       <nav className="fixed top-0 w-full z-[100] border-b border-white/[0.03] bg-black/40 backdrop-blur-xl">
-        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
+        <div className="container mx-auto px-6 h-24 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-3 h-3 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_15px_rgba(34,211,238,0.6)]" />
             <div className="flex flex-col">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/90">{t.title}</span>
-                <span className="text-[8px] uppercase tracking-widest text-cyan-500/50 font-black">{t.subtitle}</span>
+                <span className="text-[14px] font-black uppercase tracking-[0.4em] text-white/90">{t.title}</span>
+                <span className="text-[10px] uppercase tracking-widest text-cyan-500/50 font-black">{t.subtitle}</span>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {t.nav.map((item) => (
-              <button key={item} className="text-[9px] font-bold uppercase tracking-widest text-white/40 hover:text-white transition-colors cursor-pointer">
+              <button key={item} className="text-[11px] font-bold uppercase tracking-widest text-white/40 hover:text-white transition-colors cursor-pointer">
                 // {item}
               </button>
             ))}
             <div className="h-4 w-[1px] bg-white/10" />
             <button 
               onClick={toggleLang}
-              className="px-3 py-1 rounded-full border border-white/10 text-[9px] font-black uppercase tracking-widest text-cyan-400 hover:bg-white/5 transition-colors"
+              className="px-5 py-2 rounded-full border border-white/10 text-[11px] font-black uppercase tracking-widest text-cyan-400 hover:bg-white/5 transition-colors"
             >
               {lang.toUpperCase()}
             </button>
@@ -190,7 +190,10 @@ export default function PortfolioPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-8 justify-center">
-                  <button className="px-14 py-5 bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-cyan-400 hover:shadow-[0_0_40px_rgba(34,211,238,0.5)] hover:scale-105 transition-all flex items-center justify-center gap-4 group">
+                  <button 
+                    onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="px-14 py-5 bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-cyan-400 hover:shadow-[0_0_40px_rgba(34,211,238,0.5)] hover:scale-105 transition-all flex items-center justify-center gap-4 group"
+                  >
                      {t.cta} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                   </button>
               </div>
@@ -201,29 +204,7 @@ export default function PortfolioPage() {
       </section>
 
 
-      {/* 3. EXPERTISE GRID (Lighter Background Cards) */}
-      <section className="py-24 bg-[#16161c] border-y border-white/[0.05] relative">
-        <div className="container mx-auto px-6">
-          <header className="flex items-center gap-4 mb-20">
-            <h2 className="text-sm font-black uppercase tracking-[0.4em] text-white/90">{t.expertise}</h2>
-            <div className="h-[1px] flex-1 bg-white/5" />
-          </header>
-
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
-             {t.skills.map((skill, idx) => (
-                 <div key={idx} className="bg-gradient-to-br from-cyan-500/10 via-[#1c1c24] to-blue-500/10 p-8 rounded-2xl group hover:from-cyan-500/20 hover:to-blue-500/20 transition-all border border-white/[0.08] hover:border-cyan-500/40 shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:shadow-cyan-500/10">
-                    <div className="flex flex-col gap-4">
-                        <Sparkles size={16} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-                        <h3 className="text-[10px] font-black uppercase tracking-wider text-white/80 group-hover:text-white transition-colors">{skill.label}</h3>
-                    </div>
-                 </div>
-             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. DYNAMIC PROJECTS */}
-      <section className="py-24 bg-[#08080a] relative">
+      <section id="projects" className="py-24 bg-[#08080a] relative">
          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/[0.02] blur-[150px] pointer-events-none" />
          <ProjectMap lang={lang} />
       </section>
