@@ -25,7 +25,7 @@ const PROJECTS_DATA = {
         { title: "Real-time Мессенджер", desc: "Собственный движок для P2P-общения с низким пингом, синхронизацией групп и отслеживанием статусов присутствия.", type: "Связь", hasBlueprint: false },
         { title: "Generative Media & Video", desc: "Профессиональные конвейеры генерации видео (Runway Gen-3, Sora, Kling AI). Креативный AI (Nano Banana).", type: "GenAI", hasBlueprint: false },
         { title: "Neural HUD Архитектура", desc: "Дизайн-система для информационно-насыщенных дашбордов на базе Tailwind 4 и Framer Motion.", type: "UI/UX", hasBlueprint: false },
-        { title: "High-Load & Mobile", desc: "Масштабируемая инфраструктура на базе Supabase и Python. Нативный экспорт в мобильные приложения через Capacitor.", type: "Engineering", hasBlueprint: false },
+        { title: "High-Load & Mobile", desc: "Масштабируемая инфраструктура на Supabase и Python. Нативный экспорт в мобильные приложения через Capacitor.", type: "Engineering", hasBlueprint: false },
         { title: "Автономные AI-Агенты", desc: "Разработка самообучающихся сред для автоматизации задач и интеллектуальной оркестрации опыта.", type: "Агенты", hasBlueprint: false }
     ]
 };
@@ -48,40 +48,58 @@ export default function ProjectMap({ lang }: ProjectMapProps) {
                 {projects.map((project, idx) => (
                     <motion.div
                         key={idx}
-                        whileHover={{ y: -10 }}
-                        className="glass-card rounded-2xl overflow-hidden group border border-white/5 flex flex-col h-full bg-white/[0.01]"
+                        whileHover={{ y: -12, scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="relative flex flex-col h-full rounded-2xl overflow-hidden border border-white/[0.08] hover:border-cyan-500/40 bg-gradient-to-b from-[#1c1c24]/80 to-[#121218]/95 backdrop-blur-2xl shadow-2xl hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] group transition-all duration-500"
                     >
+                        {/* Hover Accent Glow */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/0 via-cyan-500/0 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                        {/* Top Accent Line */}
+                        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
+
                         {/* Visual Header */}
-                        <div className="h-44 bg-[#0c0c0e] relative flex items-center justify-center border-b border-white/5">
-                            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.2),transparent)]" />
-                            <Cpu size={48} className="text-white/5 group-hover:text-cyan-500/20 transition-colors" />
+                        <div className="h-48 bg-[#0c0c0e]/40 relative flex items-center justify-center border-b border-white/[0.05] overflow-hidden">
+                            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.15),transparent)] group-hover:scale-150 transition-transform duration-1000" />
+                            <div className="relative z-10 w-20 h-20 rounded-full bg-white/[0.02] border border-white/[0.05] flex items-center justify-center group-hover:border-cyan-500/30 transition-colors duration-500">
+                                <Cpu size={32} className="text-white/10 group-hover:text-cyan-500/60 transition-colors duration-500" />
+                            </div>
                             
                             {project.hasBlueprint && (
                                 <button 
                                     onClick={() => setSelectedProject(project)}
-                                    className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity z-20 backdrop-blur-sm"
+                                    className="absolute inset-0 flex items-center justify-center bg-[#08080a]/80 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20 backdrop-blur-md"
                                 >
-                                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500 text-black text-[10px] font-black uppercase tracking-widest">
-                                        <Eye size={12} /> View Blueprint
+                                    <div className="flex items-center gap-3 px-6 py-2.5 rounded-full bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:bg-cyan-400 transition-colors">
+                                        <Eye size={14} /> View Blueprint
                                     </div>
                                 </button>
                             )}
                         </div>
 
                         {/* Content */}
-                        <div className="p-6 flex flex-col flex-1">
-                            <div className="flex items-center justify-between mb-4">
-                                <span className="text-[8px] font-mono text-cyan-400 uppercase tracking-widest">{project.type}</span>
-                                {project.hasBlueprint && <Zap size={10} className="text-yellow-500" />}
+                        <div className="p-8 flex flex-col flex-1 relative z-10">
+                            <div className="flex items-center justify-between mb-5">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-1 h-1 rounded-full bg-cyan-500 shadow-[0_0_5px_rgba(34,211,238,1)]" />
+                                    <span className="text-[10px] font-black text-cyan-500/80 uppercase tracking-[0.2em]">{project.type}</span>
+                                </div>
+                                {project.hasBlueprint && (
+                                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-yellow-500/10 border border-yellow-500/20">
+                                        <Zap size={10} className="text-yellow-500" />
+                                        <span className="text-[8px] font-bold text-yellow-500/80 uppercase tracking-tighter">Blueprint</span>
+                                    </div>
+                                )}
                             </div>
-                            <h3 className="text-lg font-black text-white/90 mb-3 uppercase tracking-tight leading-none">
+                            <h3 className="text-xl font-black text-white mb-4 uppercase tracking-tighter leading-none group-hover:text-cyan-400 transition-colors duration-500">
                                 {project.title}
                             </h3>
-                            <p className="text-xs text-white/40 leading-relaxed font-medium">
+                            <p className="text-[11px] text-white/50 leading-relaxed font-medium">
                                 {project.desc}
                             </p>
                         </div>
                     </motion.div>
+
                 ))}
             </div>
 
