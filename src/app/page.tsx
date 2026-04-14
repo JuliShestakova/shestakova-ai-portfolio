@@ -116,7 +116,7 @@ export default function PortfolioPage() {
            </motion.div>
            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1 }} className="relative">
                 <NeuronOrb size="lg" />
-                <div className="absolute inset-[-15%] bg-cyan-500/10 blur-[90px] rounded-full pointer-events-none opacity-40" />
+                <div className="absolute inset-[-5%] bg-cyan-500/5 blur-[40px] rounded-full pointer-events-none opacity-20" />
            </motion.div>
         </div>
 
