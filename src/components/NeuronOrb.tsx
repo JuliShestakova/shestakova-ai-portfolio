@@ -30,8 +30,8 @@ export default function NeuronOrb({ size = "md", className = "" }: NeuronOrbProp
 
             {/* Main Rotating Wireframe Container */}
             <motion.div
-                animate={{ rotateY: 360, rotateZ: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                animate={{ rotateY: -360 }}
+                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
                 className="relative w-full h-full flex items-center justify-center preserve-3d"
             >
                 {/* Horizontal Rings */}
