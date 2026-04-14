@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @theme {
   --color-purple_neural-500: #a855f7;
@@ -71,6 +69,7 @@ body {
     opacity: 0.1;
     position: absolute;
     bottom: 100%;
+    animation: scanline 8s linear infinite;
   }
 
   .crt-grid {
