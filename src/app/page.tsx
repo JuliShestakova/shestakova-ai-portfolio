@@ -18,17 +18,23 @@ const TRANSLATIONS = {
     title: "JULI SHESTAKOVA",
     subtitle: "Senior AI Architect",
     heroTitle: "JULI SHESTAKOVA | SENIOR AI ARCHITECT",
-    heroDesc: "Pioneering intelligent systems through sophisticated neural network architectures and scalable AI solutions.",
+    heroDesc: "Architecting the future through multi-model AI orchestration, generative media ecosystems, and AI-native engineering methodologies.",
     expertise: "EXPERTISE",
     projectMap: "PROJECT_MAP",
     footerCopyright: "© 2026 AI ARCHITECT // SYSTEM_STABLE",
     skills: [
-      { label: "Neural Networks" },
-      { label: "Scalable AI" },
-      { label: "Deep Learning" },
-      { label: "LLM Architect" },
-      { label: "Cloud Compute" },
-      { label: "Global Infra" }
+      { label: "AI Orchestration (GPT-4o/Claude 3.5)" },
+      { label: "RU Ecosystem (GigaChat/YandexGPT)" },
+      { label: "Generative Video (Runway/Sora)" },
+      { label: "AI-Native Dev (Antigravity/Cursor)" },
+      { label: "Real-time Systems (Messenger Engine)" },
+      { label: "Scalable Infra (Supabase/Redis)" },
+      { label: "Next.js 16 & React 18" },
+      { label: "Python & Python-AI Integration" },
+      { label: "Creative AI (Nano Banana)" },
+      { label: "Mobile Native (Capacitor)" },
+      { label: "High-Performance Architecture" },
+      { label: "Product Design Strategy" }
     ]
   },
   ru: {
@@ -36,17 +42,23 @@ const TRANSLATIONS = {
     title: "ЮЛИЯ ШЕСТАКОВА",
     subtitle: "Senior AI Архитектор",
     heroTitle: "ЮЛИЯ ШЕСТАКОВА | SENIOR AI АРХИТЕКТОР",
-    heroDesc: "Создание интеллектуальных систем через сложные архитектуры нейронных сетей и масштабируемые AI-решения.",
+    heroDesc: "Проектирование будущего через оркестрацию мультимодальных нейросетей, генеративные медиа-экосистемы и AI-native методологии разработки.",
     expertise: "НАВЫКИ",
     projectMap: "КАРТА_ПРОЕКТОВ",
     footerCopyright: "© 2026 AI АРХИТЕКТ // SYSTEM_STABLE",
     skills: [
-      { label: "Нейросети" },
-      { label: "Масштабируемый AI" },
-      { label: "Deep Learning" },
-      { label: "LLM Архитектор" },
-      { label: "Облачные вычисления" },
-      { label: "Инфраструктура" }
+      { label: "AI Оркестрация (GPT-4o/Claude)" },
+      { label: "RU Экосистемы (GigaChat/Yandex)" },
+      { label: "Генеративное Видео (Runway/Sora)" },
+      { label: "AI-Native Разработка (Antigravity)" },
+      { label: "Real-time Системы (Messenger)" },
+      { label: "Масштабируемая Infra (Supabase)" },
+      { label: "Next.js 16 & React 18" },
+      { label: "Python & AI Интеграция" },
+      { label: "Креативный AI (Nano Banana)" },
+      { label: "Mobile Native (Capacitor)" },
+      { label: "High-Performance Архитектура" },
+      { label: "Продуктовая Стратегия" }
     ]
   }
 };
@@ -56,6 +68,7 @@ export default function PortfolioPage() {
   const t = TRANSLATIONS[lang];
 
   const toggleLang = () => setLang(prev => prev === 'en' ? 'ru' : 'en');
+
   return (
     <main className="min-h-screen bg-[#0a0a0c] text-white selection:bg-cyan-500/30">
       
@@ -68,7 +81,7 @@ export default function PortfolioPage() {
           </div>
           <div className="hidden md:flex items-center gap-8">
             {t.nav.map((item, idx) => (
-              <a key={item} href={`#${lang === 'en' ? TRANSLATIONS.en.nav[idx].toLowerCase() : TRANSLATIONS.en.nav[idx].toLowerCase()}`} className="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors">
+              <a key={item} href={`#${TRANSLATIONS.en.nav[idx].toLowerCase()}`} className="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors">
                 {item}
               </a>
             ))}
@@ -141,13 +154,13 @@ export default function PortfolioPage() {
         <div className="container mx-auto px-6 flex flex-wrap justify-center gap-4">
           {t.skills.map((skill, idx) => {
             const icons = [Shield, Zap, Database, Cpu, Cloud, Globe];
-            const Icon = icons[idx] || Shield;
+            const Icon = icons[idx % icons.length] || Shield;
             return (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * idx }}
+                transition={{ delay: 0.05 * idx }}
                 className="glass-pill px-6 py-3 rounded-full flex items-center gap-3 border border-white/5 hover:border-white/20 transition-all cursor-default"
               >
                 <Icon size={14} className="text-white/60" />

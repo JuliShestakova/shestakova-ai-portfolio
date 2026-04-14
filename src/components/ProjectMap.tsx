@@ -13,20 +13,20 @@ interface ProjectMapProps {
 
 const PROJECTS_DATA = {
     en: [
-        { title: "Nexus AI", desc: "Abstract teams of new geometric AI platforms.", type: "Platform" },
-        { title: "Sentient Systems", desc: "Architectural patterns for complete sentient systems.", type: "Architecture" },
-        { title: "Kora Chatbot", desc: "Learning imagination about context and neural paths.", type: "AI Agent" },
-        { title: "Neural Sync", desc: "High-performance synchronization for mesh networks.", type: "Infrastructure" },
-        { title: "Cora Design", desc: "Visual language for neural HUD environments.", type: "Design" },
-        { title: "Cloud Compute", desc: "Scalable compute pipelines for LLM orchestration.", type: "Cloud" }
+        { title: "Multi-Model AI Engine", desc: "Advanced orchestration of GPT-4o, Claude 3.5, GigaChat Pro, and YandexGPT 3. Custom prompt engineering for hybrid RU & Global markets.", type: "AI Orchestration" },
+        { title: "Real-time Messaging", desc: "Proprietary messaging engine for low-latency P2P communication, group sync, and active presence tracking.", type: "Communication" },
+        { title: "Generative Media & Video", desc: "Production-grade AI video workflows using Runway (Gen-3), Sora, and Kling AI. Creative visualization with Nano Banana.", type: "GenAI" },
+        { title: "Neural HUD Architecture", desc: "Modern UI/UX framework designed for high-density data dashboards, utilizing Tailwind 4 and Framer Motion.", type: "UI/UX" },
+        { title: "High-Load & Mobile", desc: "Scalable backend infrastructure on Supabase & Python. Seamless mobile cross-platform export via Capacitor.", type: "Engineering" },
+        { title: "Autonomous Agentic Sys", desc: "Engineering self-learning agent environments for task automation and intelligent user experience orchestration.", type: "Agents" }
     ],
     ru: [
-        { title: "Nexus AI", desc: "Абстрактные команды новых геометрических AI-платформ.", type: "Платформа" },
-        { title: "Sentient Systems", desc: "Архитектурные паттерны для разумных систем.", type: "Архитектура" },
-        { title: "Kora Chatbot", desc: "Изучение воображения в контексте нейронных путей.", type: "AI Агент" },
-        { title: "Neural Sync", desc: "Высокопроизводительная синхронизация для сетей.", type: "Инфраструктура" },
-        { title: "Cora Design", desc: "Визуальный язык для нейронных HUD-сред.", type: "Дизайн" },
-        { title: "Cloud Compute", desc: "Масштабируемые конвейеры для оркестрации LLM.", type: "Облако" }
+        { title: "Multi-Model AI Engine", desc: "Оркестрация GPT-4o, Claude 3.5, GigaChat Pro и YandexGPT 3. Тюнинг промптов для RU и глобальных рынков.", type: "AI Оркестрация" },
+        { title: "Real-time Мессенджер", desc: "Собственный движок для P2P-общения с низким пингом, синхронизацией групп и отслеживанием статусов присутствия.", type: "Связь" },
+        { title: "Generative Media & Video", desc: "Профессиональные конвейеры генерации видео (Runway Gen-3, Sora, Kling AI). Креативный AI (Nano Banana).", type: "GenAI" },
+        { title: "Neural HUD Архитектура", desc: "Дизайн-система для информационно-насыщенных дашбордов на базе Tailwind 4 и Framer Motion.", type: "UI/UX" },
+        { title: "High-Load & Mobile", desc: "Масштабируемая инфраструктура на Supabase и Python. Нативный экспорт в мобильные приложения через Capacitor.", type: "Engineering" },
+        { title: "Автономные AI-Агенты", desc: "Разработка самообучающихся сред для автоматизации задач и интеллектуальной оркестрации опыта.", type: "Агенты" }
     ]
 };
 
