@@ -1,15 +1,36 @@
 "use client";
 
-import { BookOpen, GraduationCap, Activity, Scroll, Sparkles, Home } from "lucide-react";
+import { 
+  BookOpen, 
+  GraduationCap, 
+  Activity,
+  Scroll,
+  Sparkles,
+  Home
+} from "lucide-react";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 /**
  * HexagonMissionMap Component (Showcase)
- * Immersive hexagonal grid for gamified learning platforms.
+ * A premium hexagonal navigation grid with 3D depth, 
+ * glassmorphism, and responsive layouts.
  */
 
-const HexNode = ({ icon: Icon, active = false, label="", delay = 0, theme = "cyan" }: any) => {
-  const themeStyles: any = {
+const HexNode = ({ 
+  icon: Icon, 
+  active = false, 
+  label="",
+  delay = 0,
+  theme = "cyan"
+}: { 
+  icon: any, 
+  active?: boolean, 
+  label?: string,
+  delay?: number,
+  theme?: "pink" | "orange" | "purple" | "cyan" | "green"
+}) => {
+  const themeStyles = {
     pink: "from-rose-500 via-rose-600 to-rose-700 shadow-[0_0_30px_rgba(244,63,94,0.3)] border-rose-400/30",
     orange: "from-orange-400 via-orange-500 to-red-600 shadow-[0_0_30px_rgba(249,115,22,0.3)] border-orange-300/30",
     purple: "from-violet-500 via-purple-600 to-indigo-800 shadow-[0_0_30px_rgba(139,92,246,0.3)] border-purple-400/30",
@@ -18,7 +39,13 @@ const HexNode = ({ icon: Icon, active = false, label="", delay = 0, theme = "cya
   };
 
   return (
-    <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} whileHover={{ scale: 1.1, y: -8 }} transition={{ delay, type: "spring", stiffness: 300, damping: 20 }} className="relative flex flex-col items-center group cursor-pointer">
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      whileHover={{ scale: 1.1, y: -8 }}
+      transition={{ delay, type: "spring", stiffness: 300, damping: 20 }}
+      className="relative flex flex-col items-center group cursor-pointer"
+    >
       <div className="relative w-24 h-28 md:w-28 md:h-32 flex items-center justify-center">
         <div className={`absolute inset-[-12px] rounded-full blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 bg-gradient-to-br ${active ? 'from-cyan-400 to-blue-600' : themeStyles[theme]}`} />
         <div className={`absolute inset-0 clip-hexagon bg-white/5 backdrop-blur-sm transition-all duration-500 group-hover:bg-white/10 ${active ? 'opacity-100' : 'opacity-50'}`} />
@@ -44,15 +71,22 @@ const HexNode = ({ icon: Icon, active = false, label="", delay = 0, theme = "cya
 
 export default function HexagonMissionMap() {
   return (
-    <div className="relative w-full h-full flex items-center justify-center p-4">
-      <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1, y: [0, -8, 0] }} transition={{ scale: { duration: 1 }, opacity: { duration: 1 }, y: { duration: 6, repeat: Infinity, ease: "easeInOut" } }} className="relative z-10 flex flex-col items-center gap-2">
-        <div className="flex justify-center mb-6"><HexNode icon={BookOpen} label="Learning" theme="cyan" delay={0.1} /></div>
-        <div className="flex gap-12 items-center mb-6">
-           <HexNode icon={GraduationCap} label="Academy" theme="orange" delay={0.2} />
-           <HexNode icon={Home} active label="Hub" theme="cyan" delay={0} />
-           <HexNode icon={Activity} label="Core" theme="pink" delay={0.3} />
+    <div className="relative w-full min-w-[320px] md:min-w-[450px] h-[350px] md:h-[450px] flex items-center justify-center p-4 select-none">
+      <motion.div 
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1, y: [0, -8, 0] }}
+        transition={{ scale: { duration: 1 }, opacity: { duration: 1 }, y: { duration: 6, repeat: Infinity, ease: "easeInOut" } }}
+        className="relative z-10 flex flex-col items-center gap-2"
+      >
+        <div className="flex justify-center mb-6 md:mb-10">
+           <HexNode icon={BookOpen} label="Learning" theme="cyan" delay={0.1} />
         </div>
-        <div className="flex gap-12 justify-center">
+        <div className="flex gap-12 md:gap-20 items-center mb-6 md:mb-10">
+           <HexNode icon={GraduationCap} label="Academy" theme="orange" delay={0.2} />
+           <HexNode icon={Home} active label="Central Hub" theme="cyan" delay={0} />
+           <HexNode icon={Activity} label="System" theme="pink" delay={0.3} />
+        </div>
+        <div className="flex gap-12 md:gap-20 justify-center">
            <HexNode icon={Scroll} label="Archive" theme="green" delay={0.4} />
            <HexNode icon={Sparkles} label="Engine" theme="purple" delay={0.5} />
         </div>
