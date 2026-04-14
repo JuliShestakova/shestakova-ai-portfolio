@@ -7,26 +7,43 @@ import { motion } from "framer-motion";
  * A grid of project showcases with glassmorphism and premium hover effects.
  */
 
-const PROJECTS = [
-    { title: "Nexus AI", desc: "Abstract teams of new geometric AI platforms.", type: "Platform" },
-    { title: "Sentient Systems", desc: "Architectural patterns for complete sentient systems.", type: "Architecture" },
-    { title: "Kora Chatbot", desc: "Learning imagination about context and neural paths.", type: "AI Agent" },
-    { title: "Neural Sync", desc: "High-performance synchronization for mesh networks.", type: "Infrastructure" },
-    { title: "Cora Design", desc: "Visual language for neural HUD environments.", type: "Design" },
-    { title: "Cloud Compute", desc: "Scalable compute pipelines for LLM orchestration.", type: "Cloud" }
-];
+interface ProjectMapProps {
+    lang: 'en' | 'ru';
+}
 
-export default function ProjectMap() {
+const PROJECTS_DATA = {
+    en: [
+        { title: "Nexus AI", desc: "Abstract teams of new geometric AI platforms.", type: "Platform" },
+        { title: "Sentient Systems", desc: "Architectural patterns for complete sentient systems.", type: "Architecture" },
+        { title: "Kora Chatbot", desc: "Learning imagination about context and neural paths.", type: "AI Agent" },
+        { title: "Neural Sync", desc: "High-performance synchronization for mesh networks.", type: "Infrastructure" },
+        { title: "Cora Design", desc: "Visual language for neural HUD environments.", type: "Design" },
+        { title: "Cloud Compute", desc: "Scalable compute pipelines for LLM orchestration.", type: "Cloud" }
+    ],
+    ru: [
+        { title: "Nexus AI", desc: "Абстрактные команды новых геометрических AI-платформ.", type: "Платформа" },
+        { title: "Sentient Systems", desc: "Архитектурные паттерны для разумных систем.", type: "Архитектура" },
+        { title: "Kora Chatbot", desc: "Изучение воображения в контексте нейронных путей.", type: "AI Агент" },
+        { title: "Neural Sync", desc: "Высокопроизводительная синхронизация для сетей.", type: "Инфраструктура" },
+        { title: "Cora Design", desc: "Визуальный язык для нейронных HUD-сред.", type: "Дизайн" },
+        { title: "Cloud Compute", desc: "Масштабируемые конвейеры для оркестрации LLM.", type: "Облако" }
+    ]
+};
+
+export default function ProjectMap({ lang }: ProjectMapProps) {
+    const projects = PROJECTS_DATA[lang];
+    const sectionTitle = lang === 'en' ? 'PROJECT_MAP' : 'КАРТА_ПРОЕКТОВ';
+
     return (
         <div className="w-full max-w-6xl mx-auto mt-20 px-6">
             <header className="flex items-center gap-4 mb-8">
-                <h2 className="text-sm font-black uppercase tracking-[0.4em] text-white/90">PROJECT_MAP</h2>
+                <h2 className="text-sm font-black uppercase tracking-[0.4em] text-white/90">{sectionTitle}</h2>
                 <div className="h-[1px] flex-1 bg-white/5" />
                 <span className="text-[10px] font-mono text-white/30 italic">16px</span>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {PROJECTS.map((project, idx) => (
+                {projects.map((project, idx) => (
                     <motion.div
                         key={idx}
                         whileHover={{ y: -5, borderColor: 'rgba(255,255,255,0.15)' }}
