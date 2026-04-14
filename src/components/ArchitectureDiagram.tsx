@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Smartphone, Monitor, Database, Cpu, Zap, Star, Globe, ShieldCheck } from 'lucide-react';
 
 interface DiagramProps {
@@ -31,12 +31,20 @@ export default function ArchitectureDiagram({ lang }: DiagramProps) {
   const t = NODES[lang];
 
   // Animation variants for path glow
-  const lineVariants = {
+  const lineVariants: Variants = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: { 
       pathLength: 1, 
       opacity: 1, 
       transition: { duration: 1.5, ease: "easeInOut" } 
+    }
+  };
+
+  const pulseVariants: Variants = {
+    animate: {
+      opacity: [0.2, 0.5, 0.2],
+      scale: [1, 1.05, 1],
+      transition: { duration: 3, repeat: Infinity }
     }
   };
 
